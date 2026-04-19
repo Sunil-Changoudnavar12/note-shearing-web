@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#e2dcdc;
+    /* display:flex; */
+}
+
+.container{
+    
+    display: flex;
+    flex-direction:column;
+    background-color: #ffffff;;
+    flex:3;
+}
+.welcome{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    height:20vh;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#wel{
+    color:#2d4d7d;
+    font-size: 30px;
+    padding:10px;
+}
+.welcome p{
+    color:#555;
+    font-size: 18px;
+}
+
+.main-container{
+    height:auto;
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.01);
+} 
+.recent{
+    height:100%;
+    width:100%;
+    display: flex;
+
+}
+
+.layout {
+    display: flex;
+       /* spacing between left & right */
+}
+.recent h1{
+    color:#2d4d7d;
+    font-size: 25px;
+    padding:20px;
+    padding-right:600px;
+    display: flex;
+    flex:1;
+    justify-content: space-between;
+    
+}
+.table-section{
+    height:100%;
+    width:50%;
+    box-shadow: 0px 0px 5px rgba(44, 162, 247, 0.5);
+    border:none;
+    padding:20px;
+    /* display:inline; */
+    display: flex;
+    justify-content:flex-start;
+
+}
+.table-section h2 {
+    margin-bottom: 15px;
+}
+
+table tr:hover {
+    background: #f1f1f1;
+}
+.cont-secound{
+    border:none;
+    padding:10px;
+    display: flex;
+    flex:1;
+    background-color: #fffefe;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border:none;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+img{
+    height:100%;
+    width:100%;
+}
+.box1{
+    height:300px;
+    width:300px;
+    box-shadow: 0px 0px 10px rgba(57, 60, 62, 0.223);
+    background-color: #ffffff;
+    padding:15px 0px 15px;
+    border-radius: 10px;
+    margin-top:50px;
+
+}
+h2{
+    color:#2d4d7d;
+    font-size: 20px;
+    padding:10px;
+    border-bottom: 2px solid #06a2fd;
+    
+}
+
+.box1 li {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color:rgb(28, 27, 27);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding:20px;
+    
+    border-bottom: 1px solid #aaaead;
+    text-decoration: none;
+}
+.table-section tr, .table-seection th{
+    border:1px solid #aaaedd;
+
+}

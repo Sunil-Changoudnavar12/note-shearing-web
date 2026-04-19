@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css')}}">
+</head>
+
+<body>
+
+    <body>
+
+        <!-- TOP NAVBAR -->
+        <div class="nav">
+            <h1 class="logo">NoteHub</h1>
+            <ul class="menu">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('upload') }}">upload</a></li>
+                <li><a href="{{ url_for('create') }}">Downloaded</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </div>
+
+
+        <div class="layout">
+
+            <!-- LEFT SIDEBAR -->
+            <div class="sidebar">
+                <ul>
+                    <li>Dashboard</li>
+                    <li>Users</li>
+                    <li>Notes</li>
+                    <li>Settings</li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="main">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+        </div>
+        <footer>
+            <p>@sdhj</p>
+        </footer>
+    </body>
+
+</body>
+
+</html>

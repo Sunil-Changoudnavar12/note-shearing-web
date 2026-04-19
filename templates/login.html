@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/login.css')}}">
+    <!-- <link rel="stylesheet" href="../static/css/dashboard1.css">
+    <link rel="stylesheet" href="../static/css/login.css">  -->
+</head>
+
+<body>
+
+    
+        <div class="nav">
+            <h1 class="logo">NoteHub</h1>
+            <ul class="menu">
+                <li><a  href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('upload') }}">upload</a></li>
+                <li><a href="{{ url_for('create') }}">Downloaded</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </div>
+        
+        <div class="login-page">
+              <div class="login-box">
+                 <div class="login-lebal">
+                    <h1>Welcome Back</h1>
+                    <p>sign in to your account to continue</p>
+                 </div>
+                 <form action="/login1" method="POST" >
+                 <div class="log-info">
+                    <h1>Email Address</h1>
+                    <input class="log-inp" name="email" type="email" placeholder="Enter your mail" required>
+                    <h1>Password</h1>
+                    <input class="log-inp" name="password" type="password" placeholder="Enter your password" required>
+                    <input type="submit" value="Submit" class="btn">
+                    <p class="pp">you don't have account?<a href="/register">register</a></p>
+                 </div>
+                 </form>
+              </div>
+        </div>
+        <footer>
+            <p>@sdhj</p>
+        </footer>
+    
+</body>
+
+</html>

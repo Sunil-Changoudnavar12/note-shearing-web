@@ -1,0 +1,48 @@
+{% extends "base1.html" %}
+{% block content %}
+
+<div class="upload-container">
+    <div class="uplo-info">
+        <h1>Upload Your Notes</h1>
+        <!-- <input type="file" name="file" required>
+        <br><br>
+        <button type="submit">Upload</button> -->
+    </div>
+</div>
+<div class="upload-cont">
+    <div class="uplo-form">
+        <h1 class="upload-title">upload notes</h1>
+        <div class="upload-files">
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+
+
+                <label>Select Class:</label>
+                <select class="upload-select" name="class">
+                    <option>FY</option>
+                    <option>SY</option>
+                    <option>TY</option>
+                    <option>B.TECH</option>
+                </select>
+
+
+
+                <label>Select Sem:</label>
+                <select class="upload-select" name="semester" >
+                    <option>Semester 1</option>
+                    <option>Semester 2</option>
+                </select>
+
+
+                <div class="form-group">
+                    <input type="file"required  name="file">
+                </div>
+
+                <button type="submit">Upload</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

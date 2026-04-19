@@ -1,0 +1,99 @@
+from flask import Flask, render_template, request, session, redirect
+from flask_sqlalchemy import SQLAlchemy
+import os
+
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'secret123'
+UPLOAD_FOLDER = "uploads"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+
+
+with app.app_context():
+    db.create_all()
+
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
+@app.route("/signin1", methods=["GET", "POST"])
+def signin1():
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if password != confirm_password:
+            return "Passwords do not match"
+
+        new_user = User(email=email, password=password)
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect('/login')
+
+    return render_template("register.html")
+
+
+# HOME
+@app.route('/')
+def home():
+    if 'user_id' not in session:
+        return redirect('/login')
+    return render_template("notes.html", data=[])
+
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+
+@app.route('/login1', methods=['POST'])
+def login1():
+    email = request.form.get('email')  
+    password = request.form.get('password') 
+        
+    user_data = User.query.filter_by(email=email, password=password).first()
+
+    if user_data:
+        session['user_id'] = user_data.id
+        return redirect('/')
+    else:
+        return " pahila registration kar ki"
+
+@app.route("/create")
+def create():
+    return "upload 1 pan kon kel nahi "
+
+
+@app.route("/upload")
+def upload():
+    return render_template('upload.html')
+
+@app.route("/upload1", methods=["POST"])
+def upload1():
+    file = request.files["file"]
+    
+    if file:
+        file.save("uploads/" + file.filename)
+        return "File Uploaded Successfully"
+    
+    return "No File Selected"
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

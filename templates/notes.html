@@ -1,0 +1,65 @@
+{% extends "base1.html" %}
+{% block content %}
+<div class="main">
+
+    <!-- Navbar -->
+    <div class="layout">
+
+        <div class="container">
+            <div class="welcome">
+                <h1 id="wel">Welcome to NoteHub, Sunil{{ username }}!</h1>
+                <p>download Shared Notes uploaded by your teaches</p>
+            </div>
+
+            <div class="main-container">
+                <div class="recent">
+                    <h1>Recent Notes</h1></div>
+                    <div class="table-section">
+
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                            </tr>
+                            <tr>
+                                <th>Content</th>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                            </tr>
+
+                            {% for note in notes %}
+                            <tr>
+                                <td>{{ note.title }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ note.content[:50] }}...</td>
+                            </tr>
+                            <tr>
+                                <td>{{ note.created_at.strftime("%d-%m-%Y") }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                
+            </div>
+        </div>
+
+        <!-- Right Side Box -->
+        <div class="cont-secound">
+            <div class="img">
+                <img src="{{ url_for('static', filename='images/index.png') }}" class="image">
+            </div>
+            <div class="box1">
+                <h2>my Downloads</h2>
+                <ul>
+                    <li>Note 1</li>
+                    <li>Note 2</li>
+                    <li>Note 3</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}
