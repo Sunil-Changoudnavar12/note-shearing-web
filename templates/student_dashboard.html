@@ -19,7 +19,7 @@
 
         <div class="container">
             <div class="welcome">
-                <h1 id="wel">Welcome to NoteHub, Sunil{{ username }}!</h1>
+                <h1 id="wel">Welcome to NoteHub, {{ username }}!</h1>
                 <p>download Shared Notes uploaded by your teaches</p>
             </div>
 
@@ -31,22 +31,14 @@
                         <table>
                             <tr>
                                 <th>Title</th>
-                            </tr>
-                            <tr>
                                 <th>Content</th>
-                            </tr>
-                            <tr>
                                 <th>Date</th>
                             </tr>
 
                             {% for note in notes %}
                             <tr>
                                 <td>{{ note.title }}</td>
-                            </tr>
-                            <tr>
                                 <td>{{ note.content[:50] }}...</td>
-                            </tr>
-                            <tr>
                                 <td>{{ note.created_at.strftime("%d-%m-%Y") }}</td>
                             </tr>
                             {% endfor %}

@@ -37,14 +37,13 @@
 /* SIDEBAR */
 .sidebar {
     width: 220px;
-    height: calc(100vh - 100px); /* Subtract navbar (60px) and footer (40px) */
+    height: calc(100vh); /* Subtract navbar (60px) and footer (40px) */
     background: #30303a;
     color: white;
     padding: 10px;
     flex-shrink: 0; /* Prevents the sidebar from squishing */
     overflow-y: auto; /* Allows scrolling inside sidebar if menu is long */
-    position: sticky; /* Keep sidebar fixed */
-    top: 60px; /* Position below the navbar */
+    position: relative; /* Keep sidebar fixed */
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     box-shadow: 0 2px 5px rgba(87, 124, 244, 0.1);

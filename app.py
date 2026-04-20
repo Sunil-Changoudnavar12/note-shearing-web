@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
+from datetime import datetime
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -17,6 +19,13 @@ class User(db.Model):
     password = db.Column(db.String(100))
     role = db.Column(db.String(20)) # 'student' or 'teacher'
 
+class Note(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200))
+    content = db.Column(db.Text)
+    file_path = db.Column(db.String(200))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 with app.app_context():
     db.create_all()
@@ -38,6 +47,10 @@ def signin1():
 
         if password != confirm_password:
             return "Passwords do not match"
+
+        user_exists = User.query.filter_by(email=email).first()
+        if user_exists:
+            return "Email already registered"
 
         new_user = User(email=email, password=password, role=role)
 
@@ -65,7 +78,9 @@ def student_dashboard():
         return redirect('/login')
     if session.get('role') == 'teacher':
         return redirect('/')
-    return render_template("student_dashboard.html", data=[])
+    
+    notes = Note.query.order_by(Note.created_at.desc()).all()
+    return render_template("student_dashboard.html", notes=notes, username=session.get('email'))
 
 
 @app.route("/login")
@@ -84,12 +99,13 @@ def login1():
 
     if user_data:
         session['user_id'] = user_data.id
+        session['email'] = user_data.email
         session['role'] = user_data.role
         if user_data.role == 'student':
             return redirect('/student_dashboard')
         return redirect('/')
     else:
-        return " pahila registration kar ki"
+        return "Invalid credentials. Please register if you don't have an account."
 
 @app.route("/create")
 def create():
@@ -105,8 +121,11 @@ def upload1():
     file = request.files["file"]
     
     if file:
-        file.save("uploads/" + file.filename)
-        return "File Uploaded Successfully"
+        filename = secure_filename(file.filename)
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return redirect(url_for('home'))
     
     return "No File Selected"
 
