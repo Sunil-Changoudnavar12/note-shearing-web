@@ -10,10 +10,8 @@
 </head>
 
 <body>
-
-    <body>
-
-        <!-- TOP NAVBAR -->
+    <!-- TOP NAVBAR -->
+    {% block navbar %}
         <div class="nav">
             <h1 class="logo">NoteHub</h1>
             <ul class="menu">
@@ -23,33 +21,70 @@
                 <li><a href="{{ url_for('login') }}">Login</a></li>
             </ul>
         </div>
+    {% endblock %}
 
-
-        <div class="layout">
-
-            <!-- LEFT SIDEBAR -->
-            <div class="sidebar">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Users</li>
-                    <li>Notes</li>
-                    <li>Settings</li>
-                    <li><a href="/logout">Logout</a></li>
-                </ul>
-            </div>
-
-            <!-- RIGHT CONTENT -->
-            <div class="main">
-                {% block content %}
-                {% endblock %}
-            </div>
-
+    <div class="layout">
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="{{ url_for('home')}}"> Dashboard</a></li>
+                <li>Users</li>
+                <li>
+                    <details>
+                        <summary>Notes</summary>
+                        <ul class="nested-list">
+                            <li>
+                                <details>
+                                    <summary>FY</summary>
+                                    <ul class="nested-list">
+                                        <li><a href="#">Sem 1</a></li>
+                                        <li><a href="#">Sem 2</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details>
+                                    <summary>SY</summary>
+                                    <ul class="nested-list">
+                                        <li><a href="#">Sem 1</a></li>
+                                        <li><a href="#">Sem 2</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details>
+                                    <summary>TY</summary>
+                                    <ul class="nested-list">
+                                        <li><a href="#">Sem 1</a></li>
+                                        <li><a href="#">Sem 2</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details>
+                                    <summary>B.TECH</summary>
+                                    <ul class="nested-list">
+                                        <li><a href="#">Sem 1</a></li>
+                                        <li><a href="#">Sem 2</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                        </ul>
+                    </details>
+                </li>
+                <li>Settings</li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
         </div>
-        <footer>
-            <p>@sdhj</p>
-        </footer>
-    </body>
 
+        <!-- RIGHT CONTENT -->
+        <div class="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <footer>
+        <p>@sdhj</p>
+    </footer>
 </body>
-
 </html>

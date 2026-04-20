@@ -37,11 +37,14 @@
 /* SIDEBAR */
 .sidebar {
     width: 220px;
-    height: calc(100vh - 52px); /* subtract navbar height */
+    height: calc(100vh - 100px); /* Subtract navbar (60px) and footer (40px) */
     background: #30303a;
     color: white;
     padding: 10px;
-    border-radius: 5px;
+    flex-shrink: 0; /* Prevents the sidebar from squishing */
+    overflow-y: auto; /* Allows scrolling inside sidebar if menu is long */
+    position: sticky; /* Keep sidebar fixed */
+    top: 60px; /* Position below the navbar */
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     box-shadow: 0 2px 5px rgba(87, 124, 244, 0.1);
@@ -55,10 +58,8 @@
 .sidebar li{
     font-size: 20px;
     list-style: none;
-    padding:15px;   
+    padding: 12px 15px;   
     border-bottom: 1px solid #444;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(87, 124, 244, 0.1);
 }
 .sidebar li:hover {
     background: #262726;
@@ -68,6 +69,34 @@
 .sidebar a{
     text-decoration: none;
     color:white;
+}
+
+/* Nested Menu Styling */
+.sidebar details summary {
+    list-style: none; /* Hide default arrow */
+    outline: none;
+    cursor: pointer;
+}
+
+.sidebar details summary::-webkit-details-marker {
+    display: none; /* Hide arrow for Chrome/Safari */
+}
+
+.sidebar .nested-list {
+    padding-left: 15px;
+    border-left: 2px solid #577cf4;
+    margin: 5px 0;
+}
+
+.sidebar .nested-list li {
+    font-size: 15px;
+    padding: 8px 10px;
+    border-bottom: none; /* Cleaner look for nested items */
+    box-shadow: none;
+}
+
+.sidebar .nested-list li:hover {
+    background: #3d3d4d;
 }
 /* CONTENT */
 .main {

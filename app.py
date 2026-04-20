@@ -15,6 +15,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
+    role = db.Column(db.String(20)) # 'student' or 'teacher'
 
 
 with app.app_context():
@@ -33,11 +34,12 @@ def signin1():
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
+        role = request.form.get('role')
 
         if password != confirm_password:
             return "Passwords do not match"
 
-        new_user = User(email=email, password=password)
+        new_user = User(email=email, password=password, role=role)
 
         db.session.add(new_user)
         db.session.commit()
@@ -52,8 +54,18 @@ def signin1():
 def home():
     if 'user_id' not in session:
         return redirect('/login')
+    if session.get('role') == 'student':
+        return redirect('/student_dashboard')
     return render_template("notes.html", data=[])
 
+
+@app.route('/student_dashboard')
+def student_dashboard():
+    if 'user_id' not in session:
+        return redirect('/login')
+    if session.get('role') == 'teacher':
+        return redirect('/')
+    return render_template("student_dashboard.html", data=[])
 
 
 @app.route("/login")
@@ -65,12 +77,16 @@ def login():
 @app.route('/login1', methods=['POST'])
 def login1():
     email = request.form.get('email')  
-    password = request.form.get('password') 
-        
-    user_data = User.query.filter_by(email=email, password=password).first()
+    password = request.form.get('password')
+    role = request.form.get('role')
+
+    user_data = User.query.filter_by(email=email, password=password, role=role).first()
 
     if user_data:
         session['user_id'] = user_data.id
+        session['role'] = user_data.role
+        if user_data.role == 'student':
+            return redirect('/student_dashboard')
         return redirect('/')
     else:
         return " pahila registration kar ki"
