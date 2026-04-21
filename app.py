@@ -129,6 +129,21 @@ def upload1():
     
     return "No File Selected"
 
+@app.route("/user")
+def user():
+    if 'user_id' not in session:
+        return redirect('/login')
+    
+    users = User.query.all()
+    return render_template("users.html", users=users)
+    
+@app.route("/logout")
+def logout():
+    session.pop('user_id', None)
+    session.pop('email', None)
+    session.pop('role', None)
+    return redirect('/login')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

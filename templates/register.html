@@ -39,9 +39,15 @@
                     <h1>Confirm Password</h1>
                     <input class="log-inp" name="confirm_password" type="password" placeholder="Conform password" required>
                     <h1>Select Role</h1>
-                    <div style="display: flex; gap: 20px; margin: 10px 0; color: white;">
-                        <label style="cursor: pointer;"><input type="radio" name="role" value="student" required> Student</label>
-                        <label style="cursor: pointer;"><input type="radio" name="role" value="teacher" required> Teacher</label>
+                    <div class="role-selector">
+                        <label class="role-option">
+                            <input type="radio" name="role" value="student" required>
+                            <span class="role-label">Student</span>
+                        </label>
+                        <label class="role-option">
+                            <input type="radio" name="role" value="teacher" required>
+                            <span class="role-label">Teacher</span>
+                        </label>
                     </div>
                     <input type="submit" value="Submit" class="btn">
                     <p class="pp">Already have an account? <a href="/login">login</a></p>

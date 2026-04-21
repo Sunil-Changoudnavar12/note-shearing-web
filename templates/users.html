@@ -1,0 +1,32 @@
+{% extends 'base1.html' %}
+{% block content %}
+<div class="main">
+
+    <!-- Navbar -->
+    <div class="layout">
+        <form action="/user" method="POST">
+            <div class="users-container">
+                <h1>Users List</h1>
+                <table class="users-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+       
