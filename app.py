@@ -18,6 +18,8 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     role = db.Column(db.String(20)) # 'student' or 'teacher'
+    username = db.Column(db.String(100))
+
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,6 +42,7 @@ def register():
 @app.route("/signin1", methods=["GET", "POST"])
 def signin1():
     if request.method == "POST":
+        username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
@@ -48,11 +51,13 @@ def signin1():
         if password != confirm_password:
             return "Passwords do not match"
 
-        user_exists = User.query.filter_by(email=email).first()
+        user_exists = User.query.filter_by(username=username , email=email).first()
+
+        # user_exists = User.query.filter_by(email=email).first()
         if user_exists:
             return "Email already registered"
 
-        new_user = User(email=email, password=password, role=role)
+        new_user = User(username=username, email=email, password=password, role=role)
 
         db.session.add(new_user)
         db.session.commit()
@@ -77,10 +82,10 @@ def student_dashboard():
     if 'user_id' not in session:
         return redirect('/login')
     if session.get('role') == 'teacher':
-        return redirect('/')
+        return redirect('/',data=[])
     
     notes = Note.query.order_by(Note.created_at.desc()).all()
-    return render_template("student_dashboard.html", notes=notes, username=session.get('email'))
+    return render_template("student_dashboard.html", notes=notes, username=session.get('username'))
 
 
 @app.route("/login")
@@ -94,10 +99,11 @@ def login1():
     email = request.form.get('email')  
     password = request.form.get('password')
     role = request.form.get('role')
-
-    user_data = User.query.filter_by(email=email, password=password, role=role).first()
+    username = request.form.get('username')
+    user_data = User.query.filter_by(username=username,  password=password, role=role).first()
 
     if user_data:
+        session['username'] = user_data.username
         session['user_id'] = user_data.id
         session['email'] = user_data.email
         session['role'] = user_data.role
@@ -106,7 +112,7 @@ def login1():
         return redirect('/')
     else:
         return "Invalid credentials. Please register if you don't have an account."
-
+    
 @app.route("/create")
 def create():
     return "upload 1 pan kon kel nahi "
