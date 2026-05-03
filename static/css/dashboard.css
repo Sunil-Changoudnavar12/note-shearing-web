@@ -57,32 +57,50 @@ body{
        /* spacing between left & right */
 }
 .recent h1{
-    color:#2d4d7d;
-    font-size: 25px;
-    padding:20px;
-    padding-right:600px;
-    display: flex;
-    flex:1;
-    justify-content: space-between;
-    
+    color: #1e293b;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 25px 0 15px 25px;
+    width: 100%;
+    border-bottom: 1px solid #f1f5f9;
 }
 .table-section{
-    height:100%;
-    width:50%;
-    box-shadow: 0px 0px 5px rgba(44, 162, 247, 0.5);
-    border:none;
-    padding:20px;
-    /* display:inline; */
+    width: 100%;
+    padding: 25px;
     display: flex;
     justify-content:flex-start;
-
-}
-.table-section h2 {
-    margin-bottom: 15px;
 }
 
-table tr:hover {
-    background: #f1f1f1;
+.notes-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.notes-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.notes-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 14px;
+}
+
+.notes-table tr:hover {
+    background-color: #f9fbff;
+    cursor: pointer;
 }
 .cont-secound{
     border:none;

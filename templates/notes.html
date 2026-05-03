@@ -7,41 +7,36 @@
 
         <div class="container">
             <div class="welcome">
-                <h1 id="wel">Welcome to NoteHub, Sunil{{ username }}!</h1>
-                <p>download Shared Notes uploaded by your teaches</p>
+                <h1 id="wel">Hello, {{ username }}! 👋</h1>
+                <p>Explore and download notes shared by your teachers</p>
             </div>
 
             <div class="main-container">
                 <div class="recent">
-                    <h1>Recent Notes</h1></div>
+                    <h1>Recently Uploaded</h1>
+                
             
 
-                    <div class="table-section">
-
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                            </tr>
-                            <tr>
-                                <th>Content</th>
-                            </tr>
-                            <tr>
-                                <th>Date</th>
-                            </tr>
-
+                <div class="table-section">
+                    <table class="notes-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Subject (Class/Sem)</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             {% for note in notes %}
                             <tr>
                                 <td>{{ note.title }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ note.content[:50] }}...</td>
-                            </tr>
-                            <tr>
+                                <td>{{ note.subject }}</td>
                                 <td>{{ note.created_at.strftime("%d-%m-%Y") }}</td>
                             </tr>
                             {% endfor %}
+                            </tbody>
                         </table>
-                    </div>
+                </div></div>
                 
             </div>
         </div>

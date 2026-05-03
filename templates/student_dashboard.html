@@ -22,27 +22,32 @@
                 <p>download Shared Notes uploaded by your teaches</p>
             </div>
             
+            <div class="filter-box" style="margin-bottom: 20px;">
+                <form action="/student_dashboard" method="GET" style="display: flex; gap: 10px;">
+                    <input type="text" name="subject" placeholder="Search by subject..." class="log-inp" style="max-width: 300px; height: 40px;">
+                    <button type="submit" class="btn" style="margin-top: 0; height: 40px; width: 100px;">Search</button>
+                </form>
+            </div>
+
             <div class="main-container">
                 <div class="recent">
                     <h1>Recent Notes</h1></div>
                     <div class="table-section">
-
                         <table>
-                            <tr>
-                                <th>Title</th>
-                            </tr>
-                            <tr>
-                                <th>Content</th>
-                            </tr>
-                            <tr>
-                                <th>Date</th>
-                            </tr>
-
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
                             {% for note in notes %}
                             <tr>
                                 <td>{{ note.title }}</td>
-                                <td>{{ note.content[:50] }}...</td>
+                                <td>{{ note.subject }}</td>
                                 <td>{{ note.created_at.strftime("%d-%m-%Y") }}</td>
+                                <td><a href="{{ url_for('download_note', note_id=note.id) }}" style="color: #577cf4; font-weight: bold;">Download</a></td>
                             </tr>
                             {% endfor %}
                         </table>

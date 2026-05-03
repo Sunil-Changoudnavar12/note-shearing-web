@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard1.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <h1 class="logo">NoteHub Admin</h1>
+        <ul class="menu">
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="layout">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Manage Teachers</a></li>
+                <li><a href="#">All Notes</a></li>
+                <li><a href="#">Colleges</a></li>
+            </ul>
+        </div>
+        <div class="main">
+            <h2>Unverified Teachers</h2>
+            <p>Approve teachers to allow them to upload notes.</p>
+            <table border="1" style="width:100%; margin-top:20px; border-collapse: collapse;">
+                <tr style="background:#ddd;">
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td style="padding:10px;">{{ user.username }}</td>
+                    <td style="padding:10px;">{{ user.email }}</td>
+                    <td style="padding:10px;">
+                        <a href="{{ url_for('approve_teacher', user_id=user.id) }}" 
+                           style="background:green; color:white; padding:5px 10px; text-decoration:none; border-radius:5px;">
+                           Approve
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="3" style="padding:10px;">No pending verifications.</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

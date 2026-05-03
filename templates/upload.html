@@ -15,6 +15,11 @@
         <div class="upload-files">
             <form action="/upload1" method="POST" enctype="multipart/form-data">
 
+                <label>Note Title:</label>
+                <input type="text" name="title" class="upload-select" placeholder="Enter title (e.g. Unit 1 Notes)" required>
+
+                <label>Subject:</label>
+                <input type="text" name="subject" class="upload-select" placeholder="Enter subject (e.g. Mathematics)" required>
 
                 <label>Select Class:</label>
                 <select class="upload-select" name="class">
