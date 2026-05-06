@@ -151,3 +151,23 @@ h2{
     border:1px solid #aaaedd;
 
 }
+
+.search-inp{
+    height:50px;
+    padding:20px;
+    width:60vh;
+    margin-top:30px;
+    margin-left: 25vh;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border: 0.5px solid gray;
+}
+.search-btn{
+    height:50px;
+    padding:10px;
+    width:100px;
+    margin-top:30px;
+    border-radius: 0px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}

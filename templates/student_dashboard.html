@@ -23,15 +23,16 @@
             </div>
             
             <div class="filter-box" style="margin-bottom: 20px;">
-                <form action="/student_dashboard" method="GET" style="display: flex; gap: 10px;">
-                    <input type="text" name="subject" placeholder="Search by subject..." class="log-inp" style="max-width: 300px; height: 40px;">
-                    <button type="submit" class="btn" style="margin-top: 0; height: 40px; width: 100px;">Search</button>
+                <form action="/student_dashboard" method="GET" style="display: flex;">
+                    <input type="text" name="subject" placeholder="Search by subject..." class="search-inp">
+                    <button type="submit" class="search-btn">Search</button>
                 </form>
             </div>
 
             <div class="main-container">
                 <div class="recent">
-                    <h1>Recent Notes</h1></div>
+                    <h1>Recent Notes</h1>
+                
                     <div class="table-section">
                         <table>
                             <thead>
@@ -52,7 +53,7 @@
                             {% endfor %}
                         </table>
                     </div>
-                
+                </div>
             </div>
         </div>
 
