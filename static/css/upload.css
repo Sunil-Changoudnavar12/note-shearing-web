@@ -1,34 +1,38 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.upload-container{
-    padding: 40px 0;
-    width:100%;
-    display:flex;
+.upload-container {
+    padding: 40px 20px;
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f8fafc;
+    min-height: calc(100vh - 100px);
 }
 
-.uplo-info h1{
-   color: #1e293b;
-   font-size: 32px;
-   font-weight: 700;
-   letter-spacing: -0.5px;
+.uplo-info h1 {
+    color: #1e293b;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.upload-cont{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     padding-bottom: 50px;
-     background-color: #f8fafc;
+.upload-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+    background-color: #f8fafc;
+    width: 100%;
 }
 
-.uplo-form{
+.uplo-form {
     width: 100%;
     max-width: 500px;
     background: #ffffff;
@@ -38,26 +42,26 @@
     transition: transform 0.3s ease;
 }
 
-.uplo-form:hover{
+.uplo-form:hover {
     transform: translateY(-5px);
 }
 
-.upload-title{
-    display:flex;
+.upload-title {
+    display: flex;
     justify-content: center;
-    align-items:center ;
+    align-items: center;
     height: 60px;
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    width:100%;
+    width: 100%;
     background-color: #577cf4;
-    color:#ffffff;
+    color: #ffffff;
 }
 
-.upload-select{
+.upload-select {
     height: 45px;
     width: 100%;
     padding: 0 15px;
@@ -73,6 +77,7 @@
 
 .upload-select:focus {
     border-color: #577cf4;
+    box-shadow: 0 0 5px rgba(87, 124, 244, 0.3);
 }
 
 .upload-files label {
@@ -83,11 +88,11 @@
     margin-bottom: 5px;
 }
 
-.upload-files{
+.upload-files {
     padding: 30px;
 }
 
-.form-group{
+.form-group {
     height: auto;
     width: 100%;
     margin-top: 20px;
@@ -96,23 +101,141 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
-    padding: 20px;  
+    padding: 20px;
+    transition: all 0.3s;
 }
 
-button{
+.form-group:hover {
+    border-color: #577cf4;
+    background: #f8faff;
+}
+
+.form-group input[type="file"] {
+    cursor: pointer;
+}
+
+button {
     height: 50px;
     width: 100%;
     margin-top: 25px;
-    border:none;
+    border: none;
     background-color: #577cf4;
     border-radius: 8px;
-    color:white;
+    color: white;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
+    min-height: 48px;
 }
 
 button:hover {
     background-color: #3f62d6;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+
+@media (max-width: 768px) {
+    .upload-container {
+        padding: 30px 15px;
+        min-height: calc(100vh - 90px);
+    }
+
+    .uplo-info h1 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .uplo-form {
+        border-radius: 10px;
+    }
+
+    .upload-title {
+        font-size: 16px;
+        height: 55px;
+        letter-spacing: 0.5px;
+    }
+
+    .upload-files {
+        padding: 25px;
+    }
+
+    .upload-select {
+        height: 42px;
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .upload-files label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .form-group {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    button {
+        height: 45px;
+        font-size: 15px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .upload-container {
+        padding: 20px 10px;
+        min-height: calc(100vh - 85px);
+    }
+
+    .uplo-info h1 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .uplo-form {
+        border-radius: 8px;
+    }
+
+    .upload-title {
+        font-size: 14px;
+        height: 50px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+    }
+
+    .upload-files {
+        padding: 20px 15px;
+    }
+
+    .upload-select {
+        height: 40px;
+        font-size: 12px;
+        padding: 0 12px;
+        margin-bottom: 10px;
+    }
+
+    .upload-files label {
+        font-size: 11px;
+        margin-bottom: 3px;
+        font-weight: 700;
+    }
+
+    .form-group {
+        padding: 12px 10px;
+        margin-top: 12px;
+        border-width: 1px;
+    }
+
+    button {
+        height: 42px;
+        font-size: 14px;
+        margin-top: 18px;
+        font-weight: 600;
+    }
 }

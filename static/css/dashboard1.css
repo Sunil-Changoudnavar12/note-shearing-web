@@ -15,6 +15,23 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    position: relative;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1001;
 }
 
 /* MENU */
@@ -27,6 +44,12 @@
 .menu a {
     color: white;
     text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.3s;
+}
+
+.menu a:hover {
+    opacity: 0.8;
 }
 
 /* MAIN LAYOUT */
@@ -37,49 +60,60 @@
 /* SIDEBAR */
 .sidebar {
     width: 220px;
-    height: calc(100vh); /* Subtract navbar (60px) and footer (40px) */
+    height: calc(100vh - 100px);
     background: #30303a;
     color: white;
     padding: 10px;
-    flex-shrink: 0; /* Prevents the sidebar from squishing */
-    overflow-y: auto; /* Allows scrolling inside sidebar if menu is long */
-    position: relative; /* Keep sidebar fixed */
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    position: relative;
     box-shadow: 0 2px 5px rgba(87, 124, 244, 0.1);
+}
+
+.sidebar-close {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 10px;
 }
 
 .sidebar ul {
     padding: 0;
-    
 }
 
-.sidebar li{
+.sidebar li {
     font-size: 20px;
     list-style: none;
     padding: 12px 15px;   
     border-bottom: 1px solid #444;
 }
+
 .sidebar li:hover {
     background: #262726;
     cursor: pointer;
 }
 
-.sidebar a{
+.sidebar a {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
 /* Nested Menu Styling */
 .sidebar details summary {
-    list-style: none; /* Hide default arrow */
+    list-style: none;
     outline: none;
     cursor: pointer;
     border-bottom: 1px solid #444;
 }
 
 .sidebar details summary::-webkit-details-marker {
-    display: none; /* Hide arrow for Chrome/Safari */
+    display: none;
 }
 
 .sidebar .nested-list {
@@ -91,13 +125,13 @@
 .sidebar .nested-list li {
     font-size: 15px;
     padding: 8px 10px;
-    border-bottom: none; /* Cleaner look for nested items */
-    box-shadow: none;
+    border-bottom: none;
 }
 
 .sidebar .nested-list li:hover {
     background: #3d3d4d;
 }
+
 /* CONTENT */
 .main {
     flex: 1;
@@ -105,12 +139,123 @@
     background: #f4f4f4;
 }
 
-footer{
-    height:40px;
-    width:100%;
-    color:white;
-    background-color:#151a44;
+footer {
+    height: 40px;
+    width: 100%;
+    color: white;
+    background-color: #151a44;
     justify-content: center;
     align-items: center;
-    display:flex;
+    display: flex;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+
+/* Tablet & Mobile - 768px and below */
+@media (max-width: 768px) {
+    .nav {
+        height: 50px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 50px);
+        flex-direction: column;
+        gap: 0;
+        background: #151a44;
+        z-index: 999;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .menu.active {
+        max-height: 100vh;
+    }
+
+    .menu li {
+        padding: 15px 20px;
+        border-bottom: 1px solid #1e2450;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 50px;
+        width: 250px;
+        height: calc(100vh - 50px);
+        z-index: 998;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        max-width: 80vw;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar-close {
+        display: block;
+    }
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    footer {
+        height: 50px;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+/* Extra small devices - 480px and below */
+@media (max-width: 480px) {
+    .nav {
+        height: 45px;
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .menu-toggle {
+        font-size: 24px;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: none;
+    }
+
+    .main {
+        padding: 10px;
+    }
+
+    .sidebar li {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+
+    .sidebar .nested-list li {
+        font-size: 14px;
+    }
 }

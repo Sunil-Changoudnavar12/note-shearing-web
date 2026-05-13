@@ -1,62 +1,67 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color:#e2dcdc;
-    /* display:flex; */
+    background-color: #e2dcdc;
 }
 
-.container{
-    
+.container {
     display: flex;
-    flex-direction:column;
-    background-color: #ffffff;;
-    flex:3;
+    flex-direction: column;
+    background-color: #ffffff;
+    flex: 3;
 }
-.welcome{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    height:20vh;
-    width:100%;
-    display:flex;
+
+.welcome {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+    width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    padding: 20px;
 }
 
-#wel{
-    color:#2d4d7d;
+#wel {
+    color: #2d4d7d;
     font-size: 30px;
-    padding:10px;
-}
-.welcome p{
-    color:#555;
-    font-size: 18px;
+    padding: 10px;
+    text-align: center;
 }
 
-.main-container{
-    height:auto;
-    width:100%;
+.welcome p {
+    color: #555;
+    font-size: 18px;
+    text-align: center;
+}
+
+.main-container {
+    height: auto;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.01);
-} 
-.recent{
-    height:100%;
-    width:100%;
-    display: flex;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.01);
+}
 
+.recent {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .layout {
     display: flex;
-       /* spacing between left & right */
+    flex-wrap: wrap;
 }
-.recent h1{
+
+.recent h1 {
     color: #1e293b;
     font-size: 22px;
     font-weight: 700;
@@ -64,14 +69,16 @@ body{
     width: 100%;
     border-bottom: 1px solid #f1f5f9;
 }
-.table-section{
+
+.table-section {
     width: 100%;
     padding: 25px;
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
+    overflow-x: auto;
 }
 
-.notes-table {
+table {
     width: 100%;
     border-collapse: collapse;
     background: white;
@@ -79,7 +86,7 @@ body{
     overflow: hidden;
 }
 
-.notes-table th {
+table th {
     background-color: #f8fafc;
     color: #64748b;
     font-weight: 600;
@@ -91,83 +98,311 @@ body{
     border-bottom: 2px solid #edf2f7;
 }
 
-.notes-table td {
+table td {
     padding: 15px;
     border-bottom: 1px solid #f1f5f9;
     color: #334155;
     font-size: 14px;
 }
 
-.notes-table tr:hover {
+table tr:hover {
     background-color: #f9fbff;
     cursor: pointer;
 }
-.cont-secound{
-    border:none;
-    padding:10px;
+
+.cont-secound {
+    border: none;
+    padding: 10px;
     display: flex;
-    flex:1;
+    flex: 1;
     background-color: #fffefe;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    border:none;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
 }
-img{
-    height:100%;
-    width:100%;
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
-.box1{
-    height:300px;
-    width:300px;
+
+.box1 {
+    height: 300px;
+    width: 300px;
     box-shadow: 0px 0px 10px rgba(57, 60, 62, 0.223);
     background-color: #ffffff;
-    padding:15px 0px 15px;
+    padding: 15px 0;
     border-radius: 10px;
-    margin-top:50px;
-
 }
-h2{
-    color:#2d4d7d;
+
+.img {
+    height: 250px;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+h2 {
+    color: #2d4d7d;
     font-size: 20px;
-    padding:10px;
+    padding: 10px;
     border-bottom: 2px solid #06a2fd;
-    
 }
 
 .box1 li {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    color:rgb(28, 27, 27);
+    color: rgb(28, 27, 27);
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
-    padding:20px;
-    
+    padding: 20px;
     border-bottom: 1px solid #aaaead;
     text-decoration: none;
 }
-.table-section tr, .table-seection th{
-    border:1px solid #aaaedd;
 
+.table-section tr, .table-section th {
+    border: 1px solid #aaaedd;
 }
 
-.search-inp{
-    height:50px;
-    padding:20px;
-    width:60vh;
-    margin-top:30px;
-    margin-left: 25vh;
+.search-inp {
+    height: 50px;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 60vh;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
     border: 0.5px solid gray;
+    font-size: 16px;
 }
-.search-btn{
-    height:50px;
-    padding:10px;
-    width:100px;
-    margin-top:30px;
-    border-radius: 0px;
+
+.search-btn {
+    height: 50px;
+    padding: 10px 20px;
+    width: 100px;
+    margin-top: 30px;
+    border-radius: 0;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
+    background: #577cf4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.search-btn:hover {
+    background: #3f62d6;
+}
+
+.filter-box {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.filter-box form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    gap: 0;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+
+@media (max-width: 1024px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .cont-secound {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .box1 {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .img {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    #wel {
+        font-size: 24px;
+    }
+
+    .welcome {
+        min-height: 150px;
+        padding: 15px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
+
+    .table-section {
+        padding: 15px 10px;
+        overflow-x: auto;
+    }
+
+    table th {
+        font-size: 11px;
+        padding: 10px 8px;
+    }
+
+    table td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+
+    .recent h1 {
+        font-size: 18px;
+        padding: 15px 0 10px 15px;
+    }
+
+    .search-inp {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .filter-box {
+        margin: 15px 10px;
+    }
+
+    .cont-secound {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .box1 li {
+        font-size: 16px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #wel {
+        font-size: 20px;
+    }
+
+    .welcome {
+        min-height: 130px;
+        padding: 12px;
+    }
+
+    .welcome p {
+        font-size: 14px;
+    }
+
+    .table-section {
+        padding: 10px 5px;
+    }
+
+    /* Convert table to card-like layout on mobile */
+    table {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table, table tbody, table tr, table td {
+        display: block;
+        width: 100%;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    table td {
+        text-align: left;
+        padding: 10px;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: 600;
+        color: #577cf4;
+        width: 40%;
+    }
+
+    .recent h1 {
+        font-size: 16px;
+        padding: 12px 0 8px 12px;
+    }
+
+    .search-inp {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .search-btn {
+        height: 45px;
+        width: 80px;
+        font-size: 14px;
+    }
+
+    .filter-box form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-box {
+        margin: 12px;
+    }
+
+    h2 {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .box1 {
+        min-height: 250px;
+        max-width: 100%;
+        width: calc(100% - 20px);
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .box1 li {
+        font-size: 14px;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .img {
+        max-width: 100%;
+        width: calc(100% - 20px);
+        height: 200px;
+        margin: 10px;
+    }
+
+    .cont-secound {
+        padding: 5px;
+    }
 }

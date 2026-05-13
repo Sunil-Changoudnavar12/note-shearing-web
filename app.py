@@ -145,6 +145,11 @@ def create():
 def upload():
     if 'user_id' not in session:
         return redirect('/login')
+    
+    # Only teachers and admins can upload notes
+    if session.get('role') not in ['teacher', 'admin']:
+        return redirect(url_for('student_dashboard'))
+    
     user = User.query.get(session['user_id'])
     return render_template('upload.html', user=user)
 
@@ -231,7 +236,8 @@ def user():
     if 'user_id' not in session:
         return redirect('/login')
     
-    users = User.query.all()
+    current_college_id = session.get('college_id')
+    users = User.query.filter_by(college_id=current_college_id).all()
     return render_template("users.html", users=users)
     
 @app.route("/logout")

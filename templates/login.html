@@ -3,26 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard1.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/login.css')}}">
-    <!-- <link rel="stylesheet" href="../static/css/dashboard1.css">
-    <link rel="stylesheet" href="../static/css/login.css">  -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/user.css')}}">
 </head>
 
 <body>
-
-    
-        <div class="nav">
-            <h1 class="logo">NoteHub</h1>
-            <ul class="menu">
-                <li><a  href="{{ url_for('home') }}">Home</a></li>
-                <!-- <li><a href="{{ url_for('upload') }}">upload</a></li>
-                <li><a href="{{ url_for('create') }}">Downloaded</a></li> -->
-                <li><a href="{{ url_for('register') }}">register</a></li>
-            </ul>
-        </div>
+    <div class="nav">
+        <h1 class="logo">NoteHub</h1>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <ul class="menu" id="navMenu">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('register') }}">register</a></li>
+        </ul>
+    </div>
         
         <div class="login-page">
               <div class="login-box">
@@ -58,7 +55,22 @@
         <footer>
             <p>@sdhj</p>
         </footer>
-    
+        <script>
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu) navMenu.classList.remove('active');
+                });
+            });
+        </script>
 </body>
 
 </html>

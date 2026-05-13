@@ -2,18 +2,141 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard1.css') }}">
+    <style>
+        .admin-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-table tr {
+            background: white;
+        }
+
+        .admin-table th {
+            background: linear-gradient(135deg, #54b1ef, #1368ad, #083172);
+            color: white;
+            padding: 12px 15px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .admin-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .admin-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .approve-btn {
+            background: #10b981;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .approve-btn:hover {
+            background: #059669;
+        }
+
+        .main h2 {
+            color: #1e293b;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .main p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .admin-table thead {
+                display: none;
+            }
+
+            .admin-table tr {
+                margin-bottom: 15px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                display: block;
+            }
+
+            .admin-table td {
+                display: block;
+                text-align: left;
+                position: relative;
+                padding-left: 40%;
+                border: none;
+                padding: 10px;
+            }
+
+            .admin-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: 600;
+                color: #577cf4;
+                width: 35%;
+            }
+
+            .admin-table td:first-child {
+                font-weight: 600;
+                color: #1e293b;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-table td {
+                font-size: 12px;
+                padding: 8px;
+                padding-left: 35%;
+            }
+
+            .admin-table td:before {
+                font-size: 11px;
+            }
+
+            .approve-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .main h2 {
+                font-size: 20px;
+            }
+
+            .main p {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="nav">
         <h1 class="logo">NoteHub Admin</h1>
-        <ul class="menu">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <ul class="menu" id="navMenu">
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </div>
     <div class="layout">
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
+            <button class="sidebar-close" id="sidebarToggle">✕</button>
             <ul>
                 <li><a href="#">Manage Teachers</a></li>
                 <li><a href="#">All Notes</a></li>
@@ -23,28 +146,52 @@
         <div class="main">
             <h2>Unverified Teachers</h2>
             <p>Approve teachers to allow them to upload notes.</p>
-            <table border="1" style="width:100%; margin-top:20px; border-collapse: collapse;">
-                <tr style="background:#ddd;">
+            <table class="admin-table">
+                <tr>
                     <th>Username</th>
                     <th>Email</th>
                     <th>Action</th>
                 </tr>
                 {% for user in users %}
                 <tr>
-                    <td style="padding:10px;">{{ user.username }}</td>
-                    <td style="padding:10px;">{{ user.email }}</td>
-                    <td style="padding:10px;">
-                        <a href="{{ url_for('approve_teacher', user_id=user.id) }}" 
-                           style="background:green; color:white; padding:5px 10px; text-decoration:none; border-radius:5px;">
-                           Approve
+                    <td data-label="Username">{{ user.username }}</td>
+                    <td data-label="Email">{{ user.email }}</td>
+                    <td data-label="Action">
+                        <a href="{{ url_for('approve_teacher', user_id=user.id) }}" class="approve-btn">
+                            Approve
                         </a>
                     </td>
                 </tr>
                 {% else %}
-                <tr><td colspan="3" style="padding:10px;">No pending verifications.</td></tr>
+                <tr><td colspan="3" style="text-align: center; padding: 20px;">No pending verifications.</td></tr>
                 {% endfor %}
             </table>
         </div>
     </div>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+        }
+        
+        document.querySelectorAll('.menu a, .sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu) navMenu.classList.remove('active');
+                if (sidebar) sidebar.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

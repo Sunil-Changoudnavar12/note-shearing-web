@@ -1,32 +1,32 @@
 {% extends 'base1.html' %}
 {% block content %}
 <div class="main">
-
-    <!-- Navbar -->
     <div class="layout">
-        <form action="/user" method="POST">
+        <form action="/user" method="POST" style="width: 100%;">
             <div class="users-container">
-                <h1>Users List</h1>
+                <h1 style="color: #1e293b; font-size: 24px; margin-bottom: 20px; width: 100%;">Users List</h1>
                 <table class="users-table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.role }}</td>
-                    </tr>
-                    {% endfor %}
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td data-label="ID">{{ loop.index }}</td>
+                            <td data-label="Name">{{ user.username }}</td>
+                            <td data-label="Email">{{ user.email }}</td>
+                            <td data-label="Role">{{ user.role }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </form>
     </div>
 </div>
-{% endblock %}
-
-       
+{% endblock %}       
