@@ -173,7 +173,7 @@ h2 {
     max-width: 60vh;
     margin-top: 30px;
     margin-left: auto;
-    margin-right: auto;
+    /* margin-right: auto; */
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
     border: 0.5px solid gray;
@@ -188,7 +188,7 @@ h2 {
     border-radius: 0;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
-    background: #577cf4;
+    background: linear-gradient(135deg, #54b1ef, #1368ad, #083172);
     color: white;
     border: none;
     cursor: pointer;
@@ -197,7 +197,7 @@ h2 {
 }
 
 .search-btn:hover {
-    background: #3f62d6;
+    background: linear-gradient(135deg, #083172, #1368ad, #54b1ef);
 }
 
 .filter-box {
